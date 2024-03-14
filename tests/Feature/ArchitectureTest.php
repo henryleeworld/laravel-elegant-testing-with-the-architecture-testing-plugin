@@ -34,8 +34,16 @@ arch('Modules should be independent.')
     ->expect('Modules\RideSharing')
     ->not->toBeUsed('Modules\FoodDelivery');
 
-arch('Do not access session data in Async jobs.')
-    ->expect(['session', 'auth', 'request'])
+arch('Do not access session data in Async jobs')
+    ->expect([
+        'session',
+        'auth',
+        'request',
+        'Illuminate\Support\Facades\Auth',
+        'Illuminate\Support\Facades\Session',
+        'Illuminate\Http\Request',
+        'Illuminate\Support\Facades\Request'
+    ])
     ->each->not->toBeUsedIn('App\Jobs');
 
 /*
