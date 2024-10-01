@@ -2,37 +2,21 @@
 
 namespace Tests\Feature;
 
-arch('Do not leave debug statements.')
-    ->expect(['dd', 'dump', 'ray', 'var_dump'])
-    ->not->toBeUsed();
+arch()->preset()->php();
+arch()->preset()->security();
+arch()->preset()->laravel();
 
 arch('We do not directly use Eloquent Models in our APIs.')
     ->expect('App\Models')
     ->not->toBeUsedIn('App\Http\Controllers\Api');
 
-arch('Do not use env helper in code.')
-    ->expect(['env'])
-    ->not->toBeUsed();
-
 arch('Action classes should be invokable.')
     ->expect('App\Actions')
     ->toBeInvokable();
 
-arch('Job classes should have handle method.')
-    ->expect('App\Jobs')
-    ->toHaveMethod('handle');
-
 arch('Repositories classes should implement the repository interface.')
     ->expect('App\Repositories')
     ->toImplement('App\Repositories\RepositoryInterface');
-
-arch('Services classes should have proper suffix.')
-    ->expect('App\Controllers')
-    ->toHaveSuffix('Controller');
-
-arch('Modules should be independent.')
-    ->expect('Modules\RideSharing')
-    ->not->toBeUsed('Modules\FoodDelivery');
 
 arch('Do not access session data in Async jobs')
     ->expect([

@@ -24,5 +24,5 @@ $ php artisan test
 ----
 
 ## 畫面截圖
-![](https://i.imgur.com/dhTcGIb.png)
+![](https://i.imgur.com/541DLfP.png)
 > 對應用程式進行架構測試
